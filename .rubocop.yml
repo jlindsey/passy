@@ -1,0 +1,103 @@
+---
+AllCops:
+  Include:
+    - '**/Rakefile'
+    - '**/config.ru'
+  Exclude:
+    - 'db/**/*'
+    - 'config/**/*'
+    - 'script/**/*'
+    - 'bin/*'
+
+  RunRailsCops: true
+
+Rails/HasAndBelongsToMany:
+  Enabled: false
+
+Metrics/LineLength:
+  Max: 120
+
+Metrics/MethodLength:
+  Max: 40
+
+Metrics/CyclomaticComplexity:
+  Max: 10
+
+Metrics/AbcSize:
+  Max: 25
+
+Style/Next:
+  Enabled: false
+
+Style/RedundantSelf:
+  Enabled: false
+
+Style/IfUnlessModifier:
+  Enabled: false
+
+Style/BarePercentLiterals:
+  Enabled: false
+
+Style/GuardClause:
+  Enabled: false
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+
+
+Style/TrailingBlankLines:
+  EnforcedStyle: final_blank_line
+  SupportedStyles:
+    - final_newline
+    - final_blank_line
+
+Style/ClassAndModuleChildren:
+  EnforcedStyle: compact
+  SupportedStyles:
+    - nested
+    - compact
+
+Style/NonNilCheck:
+  IncludeSemanticChanges: false
+
+Style/AndOr:
+  Enabled: false
+
+Style/Not:
+  Enabled: false
+
+Style/AccessModifierIndentation:
+  EnforcedStyle: outdent
+  SupportedStyles:
+    - outdent
+
+Style/RaiseArgs:
+  EnforcedStyle: exploded
+  SupportedStyles:
+    - compact
+    - exploded
+
+Style/Lambda:
+  Enabled: false
+
+Style/LambdaCall:
+  Enabled: false
+
+Style/RegexpLiteral:
+  Enabled: false
+
+Style/AccessorMethodName:
+  Enabled: false
+
+Style/PercentLiteralDelimiters:
+  PreferredDelimiters:
+    '%':  '()'
+    '%i': '[]'
+    '%s': '()'
+    '%q': '()'
+    '%Q': '()'
+    '%w': '[]'
+    '%W': '[]'
+    '%r': '{}'
+    '%x': '()'
+
