@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150407192438) do
+ActiveRecord::Schema.define(version: 20150407211304) do
 
   create_table "account_user_permissions", force: :cascade do |t|
     t.integer  "account_id"
@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 20150407192438) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                                       null: false
+    t.string   "email",                                           null: false
     t.string   "crypted_password"
     t.string   "salt"
     t.datetime "created_at"
@@ -69,6 +69,7 @@ ActiveRecord::Schema.define(version: 20150407192438) do
     t.string   "activation_token"
     t.datetime "activation_token_expires_at"
     t.string   "name"
+    t.boolean  "admin",                           default: false, null: false
   end
 
   add_index "users", ["activation_token"], name: "index_users_on_activation_token"
@@ -78,6 +79,15 @@ ActiveRecord::Schema.define(version: 20150407192438) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token"
   add_index "users", ["unlock_token"], name: "index_users_on_unlock_token"
 
+  create_table "version_associations", force: :cascade do |t|
+    t.integer "version_id"
+    t.string  "foreign_key_name", null: false
+    t.integer "foreign_key_id"
+  end
+
+  add_index "version_associations", ["foreign_key_name", "foreign_key_id"], name: "index_version_associations_on_foreign_key"
+  add_index "version_associations", ["version_id"], name: "index_version_associations_on_version_id"
+
   create_table "versions", force: :cascade do |t|
     t.string   "item_type",      null: false
     t.integer  "item_id",        null: false
@@ -86,8 +96,10 @@ ActiveRecord::Schema.define(version: 20150407192438) do
     t.text     "object"
     t.datetime "created_at"
     t.text     "object_changes"
+    t.integer  "transaction_id"
   end
 
   add_index "versions", ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
+  add_index "versions", ["transaction_id"], name: "index_versions_on_transaction_id"
 
 end

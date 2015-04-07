@@ -6,6 +6,7 @@ require "rspec/rails"
 # Add additional requires below this line. Rails is not loaded until this point!
 require "shoulda-matchers"
 require "cancan/matchers"
+require "paper_trail/frameworks/rspec"
 
 # Add spec/support to load path for easier requiring
 $LOAD_PATH.unshift File.expand_path("../support", __FILE__)
@@ -26,9 +27,11 @@ RSpec.configure do |config|
 
   config.before(:suite) do
     begin
+      DatabaseCleaner.start
+      FactoryGirl.reload
       FactoryGirl.lint
     ensure
-      DatabaseCleaner.clean_with :truncation
+      DatabaseCleaner.clean
     end
   end
 

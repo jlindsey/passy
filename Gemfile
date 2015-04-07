@@ -15,7 +15,7 @@ gem "neat"
 gem "sorcery"
 gem "cancancan"
 gem "bcrypt", "~> 3.1.7"
-gem "paper_trail"
+gem "paper_trail", "~> 4.0.0.beta2"
 gem "bitmask_attributes"
 
 group :development, :test do
