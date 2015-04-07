@@ -11,7 +11,41 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150406182054) do
+ActiveRecord::Schema.define(version: 20150407192438) do
+
+  create_table "account_user_permissions", force: :cascade do |t|
+    t.integer  "account_id"
+    t.integer  "user_id"
+    t.integer  "permissions"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "accounts", force: :cascade do |t|
+    t.integer  "site_id"
+    t.integer  "current_password_id"
+    t.string   "username"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
+
+  add_index "accounts", ["site_id"], name: "index_accounts_on_site_id"
+
+  create_table "passwords", force: :cascade do |t|
+    t.integer  "account_id"
+    t.text     "payload"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "passwords", ["account_id"], name: "index_passwords_on_account_id"
+
+  create_table "sites", force: :cascade do |t|
+    t.string   "name"
+    t.string   "url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                                       null: false
@@ -34,6 +68,7 @@ ActiveRecord::Schema.define(version: 20150406182054) do
     t.string   "activation_state"
     t.string   "activation_token"
     t.datetime "activation_token_expires_at"
+    t.string   "name"
   end
 
   add_index "users", ["activation_token"], name: "index_users_on_activation_token"

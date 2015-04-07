@@ -7,7 +7,7 @@ Rails.application.config.sorcery.submodules = [
   :brute_force_protection,
   :activity_logging,
   :session_timeout,
-  :reset_password,
+  #:reset_password,
   :user_activationi
 ]
 
