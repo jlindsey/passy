@@ -1,3 +1,4 @@
+# rubocop:disable Style/FileName
 source "https://rubygems.org"
 
 gem "rails", "4.2.1"
@@ -15,10 +16,32 @@ gem "sorcery"
 gem "cancancan"
 gem "bcrypt", "~> 3.1.7"
 gem "paper_trail"
+gem "bitmask_attributes"
 
 group :development, :test do
   gem "byebug"
+  gem "jazz_hands2"
+  gem "awesome_print", git: "https://github.com/eoinkelly/awesome_print.git"
   gem "web-console", "~> 2.0"
   gem "spring"
+
+  gem "rspec-rails"
+  gem "spring-commands-rspec"
+end
+
+group :development do
+  gem "guard", require: false
+  gem "guard-rspec", require: false
+  gem "guard-pow", require: false
+  gem "guard-bundler", require: false
+  gem "guard-bundler-audit", require: false
+end
+
+group :test do
+  gem "simplecov"
+  gem "shoulda-matchers", require: false
+  gem "factory_girl"
+  gem "database_cleaner"
+  gem "faker"
 end
 
