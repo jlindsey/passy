@@ -7,5 +7,9 @@ class User < ActiveRecord::Base
 
   authenticates_with_sorcery!
   has_paper_trail
+
+  def admin?
+    self.admin == true
+  end
 end
 
