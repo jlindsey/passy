@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150410145928) do
+ActiveRecord::Schema.define(version: 20150410190120) do
 
   create_table "account_user_permissions", force: :cascade do |t|
     t.integer  "account_id"
@@ -46,6 +46,17 @@ ActiveRecord::Schema.define(version: 20150410145928) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "tag_links", force: :cascade do |t|
+    t.integer  "taggable_id"
+    t.string   "taggable_type"
+    t.integer  "tag_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "tag_links", ["tag_id"], name: "index_tag_links_on_tag_id"
+  add_index "tag_links", ["taggable_type", "taggable_id"], name: "index_tag_links_on_taggable_type_and_taggable_id"
 
   create_table "tags", force: :cascade do |t|
     t.string   "name"
