@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150410190120) do
+ActiveRecord::Schema.define(version: 20150410195732) do
 
   create_table "account_user_permissions", force: :cascade do |t|
     t.integer  "account_id"
@@ -30,6 +30,14 @@ ActiveRecord::Schema.define(version: 20150410190120) do
   end
 
   add_index "accounts", ["site_id"], name: "index_accounts_on_site_id"
+
+  create_table "notes", force: :cascade do |t|
+    t.integer  "notable_id"
+    t.string   "notable_type"
+    t.text     "body"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
 
   create_table "passwords", force: :cascade do |t|
     t.integer  "account_id"
